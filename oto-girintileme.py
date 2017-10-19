@@ -1,13 +1,22 @@
 #!/usr/bin/python
 #kullanim: cat kaynak_kod | pyton oto-girintileme.py > yeni_kaynak_kod
 #C/C++ Java Php gibi dillerde gecerlidir. python gibi dillerde kullanmayiniz
+import sys
+if len(sys.argv) > 1:
+	filemode=1
+	data=open(sys.argv[1],"r")
 line="\n"
 newline=""
 i=0
 skipnot=0
 word=""
 while (1==1):
-    line=raw_input()
+    if filemode==1:
+	    line=data.readline()
+	    if "\n" not in line:
+		    exit()
+    else:
+        line=raw_input()
     newline=""
     line=line.replace("\n","")
     line=line.replace("\t","")
@@ -15,12 +24,12 @@ while (1==1):
     clc=0
     if("}" in line):
         i=i-1
+    if "for" in line:
+        skipnot=2    
     while (j!=len(line)):
         if "\\" in line[j]:
             newline=newline+"\\"+line[j+1]
             j=j+2
-        if "for" in line:
-            skipnot=2
         rep=0
         if  clc ==0:
             if " " in line[j] or "\t" in line[j]:
