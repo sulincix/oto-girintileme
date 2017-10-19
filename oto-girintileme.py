@@ -11,13 +11,14 @@ while (1==1):
     newline=""
     line=line.replace("\n","")
     line=line.replace("\t","")
-    if("{" in line):
-        i=i+1
-    if("}" in line):
-        i=i-1
     j=0
     clc=0
+    if("}" in line):
+        i=i-1
     while (j!=len(line)):
+        if "\\" in line[j]:
+            newline=newline+"\\"+line[j+1]
+            j=j+2
         if "for" in line:
             skipnot=2
         rep=0
@@ -46,3 +47,5 @@ while (1==1):
         j=j+1
     newline=newline.replace("\n","")
     print "\t"*i+newline
+    if("{" in line):
+        i=i+1
