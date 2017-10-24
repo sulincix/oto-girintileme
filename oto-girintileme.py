@@ -24,24 +24,30 @@ while (1==1):
     clc=0
     if("}" in line):
         i=i-1
-    if "for" in line:
+    if "for(" in line:
         skipnot=2    
     while (j!=len(line)):
         if "\\" in line[j]:
             newline=newline+"\\"+line[j+1]
             j=j+2
         rep=0
+        repx=0
         if  clc ==0:
             if " " in line[j] or "\t" in line[j]:
                 j=j+1
             else:
                 clc=1
-        if  '"' in line[j]:
+        if  ('"' in line[j]) :
             if rep==0:
                 rep=1
             else:
                 rep=0
-        if rep==0:
+        if ("'" in line[j]):
+            if repx==0:
+                repx=1
+            else:
+                repx=0
+        if rep+repx==0:
             if ";" in line[j]:
                 if skipnot != 0:
                     skipnot=skipnot-1
