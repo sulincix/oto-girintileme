@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #kullanim: cat kaynak_kod | pyton oto-girintileme.py > yeni_kaynak_kod
 #C/C++ Java Php gibi dillerde gecerlidir. python gibi dillerde kullanmayiniz
 import sys
