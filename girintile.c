@@ -1,8 +1,3 @@
-/*
-	ieaeklü
-eiaüea
-		ieaüü
-*/
 #include <stdio.h>
 #include <stdlib.h>
 int girintile(char c);
@@ -14,13 +9,13 @@ int is_newline=0;
 int is_full=0;
 int is_ignore=0;
 int is_esc=0;
+char tab='\t';
 char cc=0;
 char ccc=0;
 FILE *input;
 FILE *output;
 int main(int argc, char* argv[]){
 	char c = 0;
-	
 	if(argc>=2){
 		input=fopen(argv[1],"r");
 	}else{
@@ -30,6 +25,9 @@ int main(int argc, char* argv[]){
 		output=fopen(argv[2],"w");
 	}else{
 		output=stdout;
+	}
+	if(argc>=4){
+		tab=argv[3][0];
 	}
 	c=getc(input);
 	while(c != -1){
@@ -56,7 +54,7 @@ int girintile(char c){
 			is_newline=1;
 			is_ignore=0;
 			for(int i=0;i<tapcount;i++){
-				putc('\t',output);
+				putc(tab,output);
 			}
 		}
 	}
