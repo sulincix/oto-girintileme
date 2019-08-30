@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
 	}
 }
 int girintile(char c){
-	if(is_paused==0 && is_paused2==0){
+	if(is_paused==0 && is_paused2==0 && is_full==1){
 		if(c == '{'){
 			tapcount++;
 		}
@@ -46,7 +46,7 @@ int girintile(char c){
 			tapcount--;
 		}
 	}
-	if(is_newline==0){
+	if(is_newline==0 && is_full==1){
 		if(c==' ' || c == '\t'){
 			is_ignore=1;
 			is_newline=0;
@@ -64,18 +64,14 @@ int girintile(char c){
 		}
 	}
 	if(is_esc==0){
-		if(c == '/'){
-			if(cc=='*'){
-				is_full=0;
-			}
-		}if(c == '*'){
+		if(c == '*' && is_paused==0 && is_paused2==0){
 			if(cc=='/'){
 				is_full=1;
 			}
 		}
-		if(is_enabled==0 && is_paused==0 && is_paused2==0 && is_full==0 ){
+		if(is_enabled==0 && is_paused==0 && is_paused2==0){
 			if(c == '/'){
-				if(cc=='/'){
+				if(cc=='/' && is_full==0){
 					is_enabled=1;
 				}
 				if(cc=='*'){
@@ -83,19 +79,14 @@ int girintile(char c){
 				}
 			}
 		}
-		if(c == '*'){
-			if(cc=='/'){
-				is_full=1;
-			}
-		}
-		if(c == '\''){
+		if(c == '\'' && cc != '\\' && is_paused2==0){
 			if(is_paused==1){
 				is_paused=0;
 			}else{
 				is_paused=1;
 			}
 		}
-		if(c == '\"'){
+		if(c == '\"' && cc != '\\' && is_paused==0){
 			if(is_paused2==1){
 				is_paused2=0;
 			}else{
