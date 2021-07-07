@@ -16,6 +16,7 @@ while (1==1):
 	    line=data.readline()
 	    if "\n" not in line:
 		    exit()
+        line=line.strip()
     else:
         line=input()
     newline=""
