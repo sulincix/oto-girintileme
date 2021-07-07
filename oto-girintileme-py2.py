@@ -3,8 +3,8 @@
 #C/C++ Java Php gibi dillerde gecerlidir. python gibi dillerde kullanmayiniz
 import sys
 if len(sys.argv) > 1:
-	filemode=1
-	data=open(sys.argv[1],"r")
+    filemode=1
+    data=open(sys.argv[1],"r")
 line="\n"
 newline=""
 i=0
@@ -12,9 +12,9 @@ skipnot=0
 word=""
 while (1==1):
     if filemode==1:
-	    line=data.readline()
-	    if "\n" not in line:
-		    exit()
+        line=data.readline()
+        if "\n" not in line:
+            exit()
         line=line.strip()
     else:
         line=raw_input()
@@ -65,3 +65,4 @@ while (1==1):
     print "\t"*i+newline
     if("{" in line):
         i=i+1
+
